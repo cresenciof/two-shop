@@ -5,8 +5,12 @@ defmodule Admin.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", Admin do
+  scope "/", Admin do
     pipe_through :api
+
+    resources "/lists", BaseListController, except: [:new, :edit]
+    resources "/item", ItemController, except: [:new, :edit]
+
   end
 
   # Enables LiveDashboard only for development
